@@ -78,6 +78,10 @@ function convertMs(ms) {
 function startTimer() {
     variables.intervalId = setInterval(() => {
         const currentDate = new Date();
+        if (variables.selectedDate < currentDate) {
+            stopTimer();
+            return;
+        }
         const ms = variables.selectedDate - currentDate;
     
         const { days, hours, minutes, seconds } = convertMs(ms);
@@ -99,6 +103,7 @@ function stopTimer() {
 function handleStartBtnClick() {
     if (variables.selectedDate) {
         startTimer();
+        elements.startBtn.disabled = true;
     }
 }
 

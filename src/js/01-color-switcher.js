@@ -13,6 +13,7 @@ let intervalId = null;
 
 function startClickHandler() {
     elements.startBtn.disabled = true;
+    elements.stopBtn.disabled = false;
     intervalId = setInterval(() => {
         elements.body.style.backgroundColor = getRandomHexColor();
     }, 1000);
@@ -20,6 +21,7 @@ function startClickHandler() {
 
 function stopClickHandler() {
     elements.startBtn.disabled = false;
+    elements.stopBtn.disabled = true;
     clearInterval(intervalId);
 }
 

@@ -5,19 +5,15 @@ const form = document.querySelector(".form")
 
 function createPromise(position, delay) {
   const shouldResolve = Math.random() > 0.3;
-  if (shouldResolve) {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        resolve({position, delay})
-      }, delay)
-    }, delay)
-  } else {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject({position, delay})
-      }, delay)
-    }, delay)
-  }
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      if (shouldResolve) {
+        resolve({position, delay});
+      } else {
+        reject({position, delay});
+      }
+    }, delay);
+  });
 }
 
 function sendIziToast(text, type) {
@@ -48,6 +44,7 @@ const submitHandler = (event) => {
     createPromise(i, currentDelay).then(sendSuccess).catch(sendError);
     currentDelay += Number(step);
   }
+  event.target.reset();
 }
 
 form.addEventListener("submit", submitHandler);
