@@ -34,6 +34,7 @@ const options = {
             return;
         }
         elements.startBtn.disabled = false;
+        elements.input.disabled = false;
         variables.selectedDate = selectedDate;
   },
 };
@@ -91,6 +92,7 @@ function startTimer() {
         elements.mins.textContent = addLeadingZero(minutes);
         elements.secs.textContent = addLeadingZero(seconds);
     }, 1000);
+    elements.input.disabled = true;
 }
 
 function stopTimer() {
